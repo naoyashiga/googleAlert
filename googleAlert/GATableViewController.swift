@@ -33,12 +33,8 @@ class GATableViewController: UITableViewController,NSXMLParserDelegate {
         
         println(encodedQuery)
         
-        let feed = "https://www.wantedly.com/projects.xml"
-        let feed2 = "http://mery.jp/fashion.rss"
-//        let feed3 = "https://news.google.com/news/feeds?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&q=%E3%83%A4%E3%83%95%E3%83%BC"
-        let feed3 = "https://news.google.com/news/feeds?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=atom&q=" + encodedQuery
-        let feed4 = "https://developer.apple.com/swift/blog/news.rss"
-        let url:NSURL = NSURL(string: feed3)
+        let feed = "https://news.google.com/news/feeds?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=atom&q=" + encodedQuery
+        let url:NSURL = NSURL(string: feed)
             parser = NSXMLParser(contentsOfURL: url)
             parser.delegate = self
             parser.parse()
@@ -66,7 +62,6 @@ class GATableViewController: UITableViewController,NSXMLParserDelegate {
     func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]) {
         eName = elementName
         attribute = attributeDict
-//        println(attribute)
         
         if elementName == "entry"{
             postTitle = String()
@@ -92,53 +87,14 @@ class GATableViewController: UITableViewController,NSXMLParserDelegate {
     
     func parser(parser: NSXMLParser!, didEndElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!) {
         if attribute["href"] != nil{
-            println(attribute["href"])
             postLink = attribute["href"] as NSString!
         }
         if elementName == "entry"{
             let post: Post = Post()
             post.postTitle = postTitle
             post.postLink = postLink
-            
-            //時刻を日本時間に合わせる
-            var localTZ = NSTimeZone.localTimeZone()
-            let dateFormatter: NSDateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MM/dd HH:mm:ss"
-//            dateFormatter.timeZone = NSTimeZone(name: "Asia/Tokyo")
-            dateFormatter.timeZone = localTZ
-            
-            let formattedDate = dateFormatter.dateFromString(postDate)
-            if formattedDate != nil {
-                dateFormatter.dateStyle = .MediumStyle;
-                dateFormatter.timeStyle = .NoStyle;
-                postDate = dateFormatter.stringFromDate(formattedDate!)
-            }
             post.postDate = postDate
             
-//            var dateArray: NSArray = postDate.componentsSeparatedByString(" ")
-//            var dateDay = dateArray[1] as String
-//            var dateMonth = dateArray[2] as String
-//            var dateYear = dateArray[3] as String
-//            
-//            var month: Dictionary<String,String> = [
-//                "Jan":"01",
-//                "Feb":"02",
-//                "Mar":"03",
-//                "Apr":"04",
-//                "May":"05",
-//                "June":"06",
-//                "July":"07",
-//                "Aug":"08",
-//                "Sept":"09",//9月は2種類
-//                "Sep":"09",
-//                "Oct":"10",
-//                "Nov":"11",
-//                "Dec":"12"
-//            ]
-//            
-//            println(dateMonth)
-//            var m: String = month[dateMonth]!
-//            post.postDate = dateYear + "/" + m + "/" + dateDay
             posts.append(post)
         }
         
@@ -152,6 +108,7 @@ class GATableViewController: UITableViewController,NSXMLParserDelegate {
         
         var titleSize: CGSize = CGSizeMake(self.view.bounds.width * 0.5, 30)
         
+        //タイトルと配信サイトを分ける
         var titleArray = post.postTitle.componentsSeparatedByString(" - ")
         var title = titleArray[0]
         var siteName = titleArray[1]
@@ -162,8 +119,6 @@ class GATableViewController: UITableViewController,NSXMLParserDelegate {
         cell.titleLabel.sizeToFit()
         
         cell.siteNameLabel.text = siteName
-        
-//        println(post.postDate)
         cell.dateLabel.text = post.postDate
 
         return cell
