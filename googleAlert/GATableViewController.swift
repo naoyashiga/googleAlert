@@ -56,7 +56,9 @@ class GATableViewController: UITableViewController,NSXMLParserDelegate {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return posts.count
+//        return posts.count
+        //3つのニュースを配信
+        return 3
     }
     
     func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]) {
