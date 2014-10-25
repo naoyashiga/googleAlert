@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9A019CFE-A017-4EF5-8E8A-2F9A481F0349</string>
+	<key>IDESourceControlProjectName</key>
+	<string>googleAlert</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D5610A575B83817DB9A662597F2A04CC95CB6884</key>
+		<string>https://github.com/naoyashiga/googleAlert.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>googleAlert.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D5610A575B83817DB9A662597F2A04CC95CB6884</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/naoyashiga/googleAlert.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D5610A575B83817DB9A662597F2A04CC95CB6884</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D5610A575B83817DB9A662597F2A04CC95CB6884</string>
+			<key>IDESourceControlWCCName</key>
+			<string>googleAlert</string>
+		</dict>
+	</array>
+</dict>
+</plist>

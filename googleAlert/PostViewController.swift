@@ -18,6 +18,16 @@ class PostViewController: UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //スワイプジェスチャー
+        let swipeRecognizer:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target:self, action:Selector("swipe:"))
+        //スワイプの方向
+        swipeRecognizer.direction = UISwipeGestureRecognizerDirection.Right
+        //スワイプを検知する指の本数
+        swipeRecognizer.numberOfTouchesRequired = 1
+        //viewに追加
+        self.view.addGestureRecognizer(swipeRecognizer)
+        
+        
         let url: NSURL = NSURL(string: postLink)
         let request: NSURLRequest = NSURLRequest(URL: url)
         webView.loadRequest(request)
@@ -50,6 +60,10 @@ class PostViewController: UIViewController, UIWebViewDelegate {
     func webViewDidFinishLoad(webView: UIWebView) {
         activityIndicator.hidden = true
         activityIndicator.stopAnimating()
+    }
+    
+    func swipe(gesture: UISwipeGestureRecognizer){
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     
